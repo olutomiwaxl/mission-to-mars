@@ -171,7 +171,7 @@ def scrape():
         "news" : mars_news,
         "mars_image" : featured_image_url,
         "current_weather" : mars_weather,
-        #"table" : facts_table,
+        "table" : facts_table,
         "hemisphere_images" : hemisphere_image_urls
     }
     
