@@ -22,7 +22,7 @@ from time import sleep
 
 def scrape():
     executable_path = {'executable_path': "/usr/local/bin/chromedriver"}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = Browser('chrome', **executable_path, headless=True)
 
     # URL of page to be scraped
     url = 'https://mars.nasa.gov/news/'
@@ -61,7 +61,7 @@ def scrape():
     # Use splinter to navigate the site and find the image url for the current Featured Mars Image
     # and assign the url string to a variable
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = Browser('chrome', **executable_path, headless=True)
 
     # first page
 
@@ -98,7 +98,7 @@ def scrape():
     #%%
     #initialize splinter again
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = Browser('chrome', **executable_path, headless=True)
 
     twitter_url = "https://twitter.com/marswxreport?lang=en"
 
@@ -130,7 +130,7 @@ def scrape():
 
     # initialize splinter
     executable_path = {'executable_path': "/usr/local/bin/chromedriver"}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = Browser('chrome', **executable_path, headless=True)
     browser.visit(astrogeology)
 
     response = requests.get(astrogeology)
@@ -152,9 +152,10 @@ def scrape():
         for image_url in image_urls:
             try:
                 img_url = image_url ['href']
+                img_url_jpeg = img_url + '/full.jpg'
                 hemisphere_dict = {
                     "title":   title,
-                    "img_url": img_url,
+                    "img_url": img_url_jpeg,
                 }
                 hemisphere_image_urls.append(hemisphere_dict)
             except:
@@ -171,7 +172,7 @@ def scrape():
         "news" : mars_news,
         "mars_image" : featured_image_url,
         "current_weather" : mars_weather,
-        "table" : facts_table,
+        "table" : facts_table.to_html(),
         "hemisphere_images" : hemisphere_image_urls
     }
     
