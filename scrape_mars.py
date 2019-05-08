@@ -136,12 +136,12 @@ def scrape():
     response = requests.get(astrogeology)
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Retrieve the parent divs for all articles
+    #retrieve list of hemisphere images
     results = soup.find_all(class_='itemLink')
 
-    # lopp through each item
+    # loop through each item
     for result in results:
-        #record the title
+        #store the title
         title = result.find(class_='description').text
         #click the title
         browser.click_link_by_partial_text(title)
